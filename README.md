@@ -13,11 +13,11 @@
 ## 运行步骤
 ### 环境要求
 - Java开发环境
-- Maven（如果使用Maven进行项目管理）
+- Maven（使用Maven进行项目管理）
 
 ### 运行命令
 1. 确保你已经安装了Java和Maven。
-2. 打开终端，进入项目根目录 `E:\作业\java\last\RouteMap`。
+2. 打开终端，进入项目根目录 `E:\xxx\xxx\RouteMap`。
 3. 运行以下命令编译项目：
 ```sh
 mvn compile
@@ -26,7 +26,10 @@ mvn compile
 ```sh
 mvn exec:java -Dexec.mainClass="main_pkg.Test"
 ```
-
+5.运行SubwayGUI.java使用图形化界面
+```sh
+mvn exec:java -Dexec.mainClass="main_pkg.SubwayGUI"
+``` 
 ## 目录结构
 ```
 RouteMap/
@@ -41,6 +44,14 @@ RouteMap/
 ├── src/                   # 源代码目录
 │   ├── main/              # 主程序代码
 │   │   ├── java/          # Java源代码
+│   │   │   └── main_pkg/  # 主程序包
+│   │   │   │   ├──SubwayGUI.java  # 图形化界面
+│   │   │   │   ├── SubwaySystem.java  # 地铁系统类
+│   │   │   │   ├──Test.java     # 测试类            
+│   │   │   ├── data_struct      #数据结构包
+│   │   │   │   ├── Edge.java  # 边类
+│   │   │   │   ├── Station.java # 车站类
+│   │   │   │   ├── StationDistance.java  # 距离类
 │   │   └── resources/     # 资源文件
 │   └── test/              # 测试代码
 │       └── java/          # Java测试代码
@@ -51,58 +62,7 @@ RouteMap/
 ├── pom.xml                # Maven项目配置文件
 ```
 
-## 使用示例
-### 测试代码示例
-```java
-public class Test {
-    public static void main(String[] args) {
-        SubwaySystem subwaySystem = new SubwaySystem();
-        subwaySystem.loadFromFile("file/all_lines_station_distance.csv");
-
-        // 测试识别中转站
-        Set<Map.Entry<String, Set<String>>> transferStations = subwaySystem.getTransferStations();
-        System.out.println("所有中转站:");
-        for (Map.Entry<String, Set<String>> entry : transferStations) {
-            System.out.println("<" + entry.getKey() + ", <" + String.join("、", entry.getValue()) + ">>");
-        }
-
-        // 测试查询距离小于n的站点
-        try {
-            Set<StationDistance> stationsWithinDistance = subwaySystem.getStationsWithinDistance("华中科技大学", 1);
-            System.out.println("距离华中科技大学站距离为1的站点:");
-            System.out.println(stationsWithinDistance);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        // 测试查找最短路径
-        try {
-            List<String> shortestPath = subwaySystem.findShortestPath("华中科技大学", "径河");
-            System.out.println("起点站到终点站的最短路径:");
-            System.out.println(shortestPath);
-
-            // 测试打印路径
-            System.out.println("最短路径打印结果:");
-            subwaySystem.printPath(shortestPath);
-
-            // 测试计算票价
-            double fare = subwaySystem.calculateFare(shortestPath);
-            System.out.println("普通单程票票价: " + fare + " 元");
-
-            // 测试计算武汉通票价
-            double wuhanTongFare = subwaySystem.calculateWuhanTongFare(shortestPath);
-            System.out.println("武汉通票价: " + wuhanTongFare + " 元");
-
-            // 测试计算日票票价
-            double dayTicketFare = subwaySystem.calculateDayTicketFare(shortestPath);
-            System.out.println("日票票价: " + dayTicketFare + " 元");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-}
-```
 
 ## 注意事项
 - 确保 `file/all_lines_station_distance.csv` 文件存在且格式正确，否则数据加载可能会失败。
-- 在计算票价时，武汉通票默认折扣为80%，日票默认折扣为70%，可根据实际情况修改代码中的折扣比例。
+- 在计算票价时，武汉通票折扣为90%，日票默认折扣为0%
