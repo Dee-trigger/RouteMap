@@ -83,8 +83,10 @@ public class SubwayGUI {
                 double wuhanTongFare = subwaySystem.calculateWuhanTongFare(shortestPath);
                 double dayTicketFare = subwaySystem.calculateDayTicketFare(shortestPath);
 
-                resultTextArea.append("普通单程票票价: " + fare + " 元\n");
-                resultTextArea.append("武汉通票价: " + wuhanTongFare + " 元\n");
+                String F = String.format("%.2f",fare);
+                resultTextArea.append("普通单程票票价: " + F + " 元\n");
+                String wuhanTongF = String.format("%.2f", wuhanTongFare);
+                resultTextArea.append("武汉通票价: " + wuhanTongF + " 元\n");
                 resultTextArea.append("日票票价: " + dayTicketFare + " 元\n");
             } catch (IllegalArgumentException e) {
                 resultTextArea.setText(e.getMessage());

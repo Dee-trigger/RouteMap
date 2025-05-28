@@ -218,23 +218,33 @@ class SubwaySystem {
                 }
             }
         }
-        if (totalDistance <= 9) {
+        if (totalDistance <= 4) {
             return 2;
-        } else if (totalDistance <= 14) {
-            return 3;
-        } else {
-            return 3 + Math.ceil((totalDistance - 14) / 5);
+        } else if (totalDistance <= 12) {
+            return 2+(totalDistance-4)*0.25;
+        } else if (totalDistance <= 24) {
+            return 4 + (totalDistance - 12) * 0.166;
+        }
+        else if (totalDistance <= 40) {
+            return 4 + 12 * 0.166 + (totalDistance - 24) * 0.125;
+
+        }
+        else if (totalDistance <=50) {
+            return 4 + 12 * 0.166 + 16 * 0.125 + (totalDistance - 40) * 0.1;
+
+        }
+        else {
+            return 4 + 12 * 0.166 + 16 * 0.125 + 10 * 0.1 + (totalDistance - 50) * 0.05;
         }
     }
 
-    public double calculateWuhanTongFare(List<String> path) {// 假设武汉通票的折扣为80%
+    public double calculateWuhanTongFare(List<String> path) {// 武汉通票的折扣为90%
         double fare = calculateFare(path);
-        return fare * 0.8;
+        return fare * 0.9;
     }
 
-    public double calculateDayTicketFare(List<String> path) {// 假设日票的折扣为70%
-        double fare = calculateFare(path);
-        return fare * 0.7;
+    public double calculateDayTicketFare(List<String> path) {// 假设日票为0
+        return 0;
     }
 
     public Map<Object, Object> getStations() {
