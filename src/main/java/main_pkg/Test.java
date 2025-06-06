@@ -8,7 +8,7 @@ import java.util.Set;
 public class Test {
     public static void main(String[] args) {
         SubwaySystem subwaySystem = new SubwaySystem();
-        subwaySystem.loadFromFile("file/all_lines_station_distance.csv");
+        subwaySystem.loadFromFile("source/all_lines_station_distance.csv");
 
         // 测试识别中转站
         Set<Map.Entry<String, Set<String>>> transferStations = subwaySystem.getTransferStations();

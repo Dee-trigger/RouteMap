@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project>
     <modelVersion>4.0.0</modelVersion>
-
+    <!-- 定义项目的组织标识，通常为公司或组织的反向域名 -->
     <groupId>org.example</groupId>
+    <!-- 定义项目的唯一标识符，通常为项目名称 -->
     <artifactId>RouteMap</artifactId>
+    <!-- 定义项目的版本号，SNAPSHOT 表示这是一个开发中的版本 -->
     <version>1.0-SNAPSHOT</version>
 
+    <!-- 定义项目的属性，可在 POM 中使用 ${propertyName} 引用 -->
     <properties>
+        <!-- 指定项目源代码的字符编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 指定编译 Java 源代码所需的 JDK 版本 -->
         <maven.compiler.source>17</maven.compiler.source>
+        <!-- 指定编译生成的字节码所兼容的 JDK 版本 -->
         <maven.compiler.target>17</maven.compiler.target>
-        <javafx.version>24.0.1</javafx.version>
     </properties>
 
+    <!-- 定义项目的依赖项，Maven 会自动下载这些依赖库 -->
     <dependencies>
+        <!-- 添加 OpenCSV 库的依赖，用于处理 CSV 文件 -->
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
@@ -33,30 +38,43 @@
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+
     </dependencies>
 
+    <!-- 定义项目的构建配置 -->
     <build>
+        <!-- 定义项目构建过程中使用的插件 -->
         <plugins>
-            <!-- 移除 javafx-maven-plugin 插件 -->
-            <!--
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.11.0</version>
-                <configuration>
-                    <mainClass>main_pkg.SubwaySystemGUI</mainClass>
-                    <launcher>subway-system</launcher>
-                    <jlinkZipName>subway-system</jlinkZipName>
-                    <jlinkImageName>subway-system</jlinkImageName>
-                    <noManPages>true</noManPages>
-                    <stripDebug>true</stripDebug>
-                    <noHeaderFiles>true</noHeaderFiles>
-                </configuration>
-            </plugin>
-            -->
+
         </plugins>
     </build>
+    <!-- 在 settings.xml 或 pom.xml 中配置 -->
+    <mirror>
+        <id>aliyun</id>
+        <url>https://maven.aliyun.com/repository/public</url>
+        <mirrorOf>central</mirrorOf>
+    </mirror>
 </project>
