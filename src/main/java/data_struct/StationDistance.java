@@ -14,6 +14,6 @@ public class StationDistance {
 
     @Override
     public String toString() {
-        return "<" + station.getName() + ", " + line + ", " + distance + ">";
+        return "<" + station.getName() + ", " + line + ", " + distance + "km>";
     }
 }

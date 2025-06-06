@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 
 class SubwaySystem {
     private Map<String, Station> stations;
@@ -88,7 +91,13 @@ class SubwaySystem {
         while (!queue.isEmpty()) {
             StationDistance current = queue.poll();
             if (current.distance <= n && current.distance > 0) {
+
+                BigDecimal bd = new BigDecimal(current.distance);
+                // 指定保留两位小数，使用四舍五入模式
+                bd = bd.setScale(2, RoundingMode.HALF_UP);
+                current.distance= bd.doubleValue();
                 result.add(current);
+
             }
             if (current.distance + 1 <= n) {
                 for (Edge edge : current.station.getEdges()) {

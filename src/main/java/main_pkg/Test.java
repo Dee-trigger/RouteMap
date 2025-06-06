@@ -20,7 +20,7 @@ public class Test {
         // 测试查询距离小于n的站点
        try {
            Set<StationDistance> stationsWithinDistance = subwaySystem.getStationsWithinDistance("华中科技大学", 1);
-            System.out.println("距离华中科技大学站距离为1的站点:");
+           System.out.println("距离华中科技大学站距离为1的站点:");
             System.out.println(stationsWithinDistance);
        } catch (IllegalArgumentException e) {
           System.out.println(e.getMessage());
