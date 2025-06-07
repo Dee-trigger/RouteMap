@@ -265,8 +265,9 @@ public class RouteMap_Gui extends Application {
             return;
         }
 
-        StringBuilder resultBuilder = new StringBuilder("起点站到终点站的最短路径:\n");
+        StringBuilder resultBuilder = new StringBuilder(startStation+"到"+endStation+"终点站的最短路径:\n");
         List<String> shortestPath = subwaySystem.findShortestPath(startStation, endStation);
+        resultBuilder.append(shortestPath.toString()).append("\n\n");
         resultBuilder.append(subwaySystem.printPath(shortestPath)).append("\n\n");
 
         // 计算票价

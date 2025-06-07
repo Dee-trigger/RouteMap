@@ -44,7 +44,8 @@ RouteMap/
 │   │   │   │   ├── Edge.java  # 边类
 │   │   │   │   ├── Station.java # 车站类
 │   │   │   │   ├── StationDistance.java  # 距离类
-│   │   └── resources/     # 资源文件
+│   │   ├── resources/     # 资源文件
+│   │   └──module-info.java         # Java模块信息
 │   └── test/              # 测试代码
 │       └── java/          # Java测试代码
 ├── target/                # 编译输出目录

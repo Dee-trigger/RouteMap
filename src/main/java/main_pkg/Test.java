@@ -4,6 +4,9 @@ import data_struct.StationDistance;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Test {
     public static void main(String[] args) {
@@ -25,18 +28,25 @@ public class Test {
        } catch (IllegalArgumentException e) {
           System.out.println(e.getMessage());
         }
-
-        // 测试查找所有路径
-//        try {
-//            List<List<String>> allPaths = subwaySystem.findAllPaths("华中科技大学", "汉口火车站");
-//            System.out.println("起点站到终点站的最短路径:");
-//            for (List<String> path : allPaths) {
-//                System.out.println(path);
-//            }
-//        } catch (IllegalArgumentException e) {
-//            System.out.println(e.getMessage());
-//        }
-
+        StringBuilder text = new StringBuilder();
+        String filePath = "source/paths.txt";
+         //测试查找所有路径
+        try {
+            List<List<String>> allPaths = subwaySystem.findAllPaths("华中科技大学", "汉口火车站");
+            System.out.println("起点站到终点站的最短路径:");
+            for (List<String> path : allPaths) {
+                //System.out.println(path);
+                text.append(path).append("\n");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(text.toString());
+            System.out.println("文本已成功保存到 " + filePath);
+        } catch (IOException e) {
+            System.err.println("写入文件时出错: " + e.getMessage());
+        }
         // 测试查找最短路径
         try {
             List<String> shortestPath = subwaySystem.findShortestPath("华中科技大学", "径河");
